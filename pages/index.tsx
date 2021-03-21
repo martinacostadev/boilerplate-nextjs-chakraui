@@ -13,7 +13,7 @@ import {
 import { Link } from "@chakra-ui/react";
 import { useUser } from '@auth0/nextjs-auth0';
 
-export default function CallToActionWithAnnotation() {
+export default function Index() {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
@@ -56,6 +56,21 @@ export default function CallToActionWithAnnotation() {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
+            {user ? (
+              <Link href="/create">
+                <Button
+                  colorScheme={'blue'}
+                  bg={'blue.600'}
+                  rounded={'full'}
+                  px={6}
+                  _hover={{
+                    bg: 'blue.600',
+                  }}>
+                  Publicar
+                </Button>
+              </Link>
+            )
+            :
             <Link href="/api/auth/login">
               <Button
                 colorScheme={'green'}
@@ -68,6 +83,7 @@ export default function CallToActionWithAnnotation() {
                 Login
               </Button>
             </Link>
+          }
           </Stack>
         </Stack>
       </Container>
